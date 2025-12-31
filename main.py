@@ -4,7 +4,7 @@ from discord.ext import tasks, commands
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
+load_dotenv("token.env")
 
 USER_ID = 970019137923465297
 CHANNEL_ID = 1057362972718157914
@@ -12,6 +12,7 @@ CHANNEL_ID = 1057362972718157914
 intents = discord.Intents.default()
 intents.presences = True
 intents.members = True
+intents.message_content = True
 bot = commands.Bot(command_prefix="!", intents=intents)
 
 last_state = None
@@ -38,7 +39,7 @@ async def on_ready():
     await check_presence(initial=True)
     presence_check.start()
 
-async def check_presence(initial=False):
+async def check_presence():
     global last_state
 
     channel = bot.get_channel(CHANNEL_ID)
