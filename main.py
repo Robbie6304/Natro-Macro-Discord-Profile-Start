@@ -39,7 +39,7 @@ async def on_ready():
     await check_presence(initial=True)
     presence_check.start()
 
-async def check_presence():
+async def check_presence(initial=False):
     global last_state
 
     channel = bot.get_channel(CHANNEL_ID)
